@@ -17,7 +17,8 @@ use \App\Http\Controllers\UserAuthController;
 */
 
 Route::get('/',[WelcomeController::class,'index'])->name('home');
-Route::get('/login',[UserAuthController::class,'login'])->name('login');
+Route::get('/login',[UserAuthController::class,'index'])->name('login');
+Route::post('/login',[UserAuthController::class,'login'])->name('login');
 Route::get('/sign-up',[UserAuthController::class,'registration'])->name('signUp');
 Route::post('/create-user',[UserAuthController::class,'createUser'])->name('user.signUp');
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
