@@ -2,43 +2,37 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    private static $user,$image,$directory,$extension,$imageUrl,$imageName;
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    private static function getImageUrl($request){
+        self::$image            =$request->file('image');
+        self::$extension        =self::$image->getClientOriginalExtension();
+        self::$imageName        =time().'.'.self::$extension;
+        self::$directory        ='user-images/';
+        self::$image->move(self::$directory, self::$imageName);
+        self::$imageUrl         =self::$directory.self::$imageName;
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+        return self::$imageUrl;
+    }
+
+    public static function createNewUser($request){
+        self::$user = New User();
+        self::$user->name = $request->name;
+        self::$user->email =$request->email;
+        self::$user->password = bcrypt($request->password);;
+        self::$user->image = self::getImageUrl($request);
+        self::$user->user_role = $request->user_role;
+
+        self::$user->save();
+    }
+
+
+
 }

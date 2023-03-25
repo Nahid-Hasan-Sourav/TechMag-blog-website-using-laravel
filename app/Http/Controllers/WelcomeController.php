@@ -11,14 +11,5 @@ class WelcomeController extends Controller
         return view('home.index');
     }
 
-    public function registration(){
-        return view('signUp');
-    }
 
-    public function login(){
-        return view('signIn');
-    }
-    public function createUser(Request $request){
-        return $request->all();
-    }
 }

@@ -5,7 +5,7 @@
         <div class="row justify-content-center align-items-center vh-100">
             <div class="col-md-5 vh-100">
                 <div class="card">
-                    <form class="card-body " action="{{route('user.signUp')}}" method="POST">
+                    <form class="card-body " action="{{route('user.signUp')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                            <h4 class="fw-bold text-center">CRATE AN ACCOUNT</h4>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="form-group row mb-4 px-3">
-                            <select name="userRole" class="form-select " aria-label="Default select example">
+                            <select name="user_role" class="form-select " aria-label="Default select example">
                                 <option selected>Select Your Role</option>
                                 <option value="User" >User</option>
                                 <option value="Blogger">Blogger</option>
