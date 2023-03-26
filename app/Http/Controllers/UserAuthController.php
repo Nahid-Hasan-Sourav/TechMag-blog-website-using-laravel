@@ -30,10 +30,11 @@ class UserAuthController extends Controller
         if($this->user){
             if(password_verify($request->password,$this->user->password)){
                 Session::put('user_id',$this->user->id);
+//                Session::put('user_log','123');
                 Session::put('user_name',$this->user->name);
-                Session::put('user_role',$this->user->userRole);
+                Session::put('user_role',$this->user->user_role);
                 Session::put('user_image',$this->user->image);
-                return redirect('/dashboard');
+                return redirect('/');
             }
             else{
                 return back()->with('message','sorry..password is wrong');
@@ -46,6 +47,10 @@ class UserAuthController extends Controller
     }
 
     public function logout(){
-
+        Session::forget('user_id');
+        Session::forget('user_name');
+        Session::forget('user_role');
+        Session::forget('user_image');
+        return redirect('/');
     }
 }

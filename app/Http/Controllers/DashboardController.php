@@ -6,16 +6,23 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        return view('blogger.dashboard.index');
+    public function bloggerDashboard(){
+        return view('dashboard.blogger.index');
     }
 
     public function addBlog(){
-        return view('blogger.dashboard.blog.addBlog');
+        return view('dashboard.blogger.addBlog');
     }
 
     public function manageBlog(){
-        return view('blogger.dashboard.blog.manageBlog');
+        return view('dashboard.blogger.manageBlog');
+    }
+
+    public function userDashboard(){
+        return view('dashboard.user.index');
+    }
+    public function adminDashboard(){
+        return view('dashboard.admin.index');
     }
 
 }

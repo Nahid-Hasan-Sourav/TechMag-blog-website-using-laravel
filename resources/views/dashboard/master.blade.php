@@ -10,14 +10,15 @@
                            <img src="{{asset('/')}}img/profile-image.png" class="rounded-circle" alt="..."
                            style="height:60px; width:60px;"
                            >
-                           <h5>Nahid Hasan Sourav</h5>
+                           <h5>{{Session::get('user_name')}}</h5>
                            <div>
-                               <p>Bloger</p>
+                               <p>{{Session::get('user_role')}}</p>
                            </div>
                        </div>
                    </div>
                     <hr>
-
+{{--                    BLOGGER MENU--}}
+                    @if(Session::get('user_role')==='Blogger')
                     <div class="row mt-4">
                        <ul class="d-flex flex-column navbar-nav text-center px-3">
                            <li class="nav-item bg-primary text-white mb-3">
@@ -32,7 +33,34 @@
 
                        </ul>
                     </div>
+                    @endif
+                    {{--                    User MENU--}}
+                        @if(Session::get('user_role')==='User')
+                    <div class="row mt-4">
+                        <ul class="d-flex flex-column navbar-nav text-center px-3">
+                            <li class="nav-item bg-primary text-white mb-3">
+                                <a href="" class="nav-link">All Save</a>
+                            </li>
+                            <li class="nav-item bg-primary text-white">
+                                <a href="" class="nav-link">SUGGESTED BLOG</a>
+                            </li>
 
+
+                        </ul>
+                    </div>
+                    @endif
+{{--                    --}}{{--Admin menu--}}
+                    @if(Session::get('user_role')==='Admin')
+                    <div class="row mt-4">
+                        <ul class="d-flex flex-column navbar-nav text-center px-3">
+                            <li class="nav-item bg-primary text-white mb-3">
+                                <a href="{{route('add.blog')}}" class="nav-link">ALL USERS</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    @endif
 
                 </div>
                 <div class="col-md-9 border">

@@ -18,9 +18,14 @@ use \App\Http\Controllers\UserAuthController;
 
 Route::get('/',[WelcomeController::class,'index'])->name('home');
 Route::get('/login',[UserAuthController::class,'index'])->name('login');
+Route::get('/logout',[UserAuthController::class,'logout'])->name('logout');
 Route::post('/login',[UserAuthController::class,'login'])->name('login');
 Route::get('/sign-up',[UserAuthController::class,'registration'])->name('signUp');
 Route::post('/create-user',[UserAuthController::class,'createUser'])->name('user.signUp');
-Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+
+Route::get('/user-dashboard',[DashboardController::class,'userDashboard'])->name('user.dashboard');
+Route::get('/admin-dashboard',[DashboardController::class,'adminDashboard'])->name('admin.dashboard');
+Route::get('/blogger-dashboard',[DashboardController::class,'bloggerDashboard'])->name('blogger.dashboard');
 Route::get('/dashboard/add',[DashboardController::class,'addBlog'])->name('add.blog');
 Route::get('/dashboard/manage',[DashboardController::class,'manageBlog'])->name('manage.blog');

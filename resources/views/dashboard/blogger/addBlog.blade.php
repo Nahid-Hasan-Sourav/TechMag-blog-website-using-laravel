@@ -1,4 +1,4 @@
-@extends('blogger.dashboard.master')
+@extends('dashboard.master')
 
 @section('rightContent')
     <div class="row ">

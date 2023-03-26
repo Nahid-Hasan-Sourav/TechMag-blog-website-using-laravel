@@ -24,9 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Category
@@ -38,13 +36,18 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                        <a class="nav-link" href="{{ Session::get('user_role') === 'User' ? route('user.dashboard') : (Session::get('user_role') === 'Blogger' ? route('blogger.dashboard') : route('admin.dashboard')) }}">Dashboard</a>
                     </li>
-
+                    @if(Session::get('user_id'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Login</a>
+                        <a class="nav-link" href="{{route('logout')}}">Logout</a>
                     </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('login')}}">Login</a>
+                        </li>
 
+                    @endif
                 </ul>
 
             </div>
