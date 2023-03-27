@@ -34,6 +34,7 @@ class UserAuthController extends Controller
                 Session::put('user_name',$this->user->name);
                 Session::put('user_role',$this->user->user_role);
                 Session::put('user_image',$this->user->image);
+                Session::put('user_email',$this->user->email);
                 return redirect('/');
             }
             else{

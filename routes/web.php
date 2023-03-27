@@ -23,9 +23,32 @@ Route::post('/login',[UserAuthController::class,'login'])->name('login');
 Route::get('/sign-up',[UserAuthController::class,'registration'])->name('signUp');
 Route::post('/create-user',[UserAuthController::class,'createUser'])->name('user.signUp');
 
+//
+//Route::get('/user-dashboard',[DashboardController::class,'userDashboard'])->name('user.dashboard');
+//Route::get('/admin-dashboard',[DashboardController::class,'adminDashboard'])->name('admin.dashboard');
+//Route::get('/blogger-dashboard',[DashboardController::class,'bloggerDashboard'])->name('blogger.dashboard');
+//Route::get('/dashboard/add',[DashboardController::class,'addBlog'])->name('add.blog');
+//Route::get('/dashboard/manage',[DashboardController::class,'manageBlog'])->name('manage.blog');
 
-Route::get('/user-dashboard',[DashboardController::class,'userDashboard'])->name('user.dashboard');
-Route::get('/admin-dashboard',[DashboardController::class,'adminDashboard'])->name('admin.dashboard');
-Route::get('/blogger-dashboard',[DashboardController::class,'bloggerDashboard'])->name('blogger.dashboard');
-Route::get('/dashboard/add',[DashboardController::class,'addBlog'])->name('add.blog');
-Route::get('/dashboard/manage',[DashboardController::class,'manageBlog'])->name('manage.blog');
+//Route::middleware(['checkUserRole'])->group(function (){
+//    Route::get('/user-dashboard',[DashboardController::class,'userDashboard'])->name('user.dashboard');
+//    Route::get('/admin-dashboard',[DashboardController::class,'adminDashboard'])->name('admin.dashboard');
+//    Route::get('/blogger-dashboard',[DashboardController::class,'bloggerDashboard'])->name('blogger.dashboard');
+//
+//});
+
+Route::middleware(['checkUserRole:Admin'])->group(function () {
+    Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
+});
+
+Route::middleware(['checkUserRole:Blogger'])->group(function () {
+    Route::get('/blogger-dashboard', [DashboardController::class, 'bloggerDashboard'])->name('blogger.dashboard');
+    Route::post('/dashboard/add-category',[DashboardController::class,'addCategory'])->name('add.category');
+    Route::get('/dashboard/manage-blog',[DashboardController::class,'manageBlog'])->name('manage.blog');
+    Route::get('/dashboard/add-blog-category',[DashboardController::class,'addBlogCategory'])->name('add.blog.category');
+});
+
+Route::middleware(['checkUserRole:User'])->group(function () {
+    Route::get('/user-dashboard', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
+});
+
