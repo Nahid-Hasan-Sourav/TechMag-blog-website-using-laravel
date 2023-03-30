@@ -36,6 +36,9 @@ Route::middleware(['checkUserRole:Blogger'])->group(function () {
 
     Route::post('/dashboard/create-new-blog',[DashboardController::class,'createNewBlog'])->name('create.blog');
     Route::get('/dashboard/manage-blog',[DashboardController::class,'manageBlog'])->name('manage.blog');
+    Route::get('/dashboard/edit-blog/{id}',[DashboardController::class,'editBlog'])->name('edit.blog');
+    Route::post('/dashboard/update-blog/{id}',[DashboardController::class,'updateBlog'])->name('update.blog');
+    Route::post('/dashboard/delete-blog/{id}',[DashboardController::class,'deleteBlog'])->name('delete.blog');
 
 
     Route::post('/dashboard/add-category',[DashboardController::class,'addCategory'])->name('add.category');

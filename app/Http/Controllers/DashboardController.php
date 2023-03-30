@@ -31,7 +31,7 @@ class DashboardController extends Controller
     //this is for add blog form
     public function bloggerDashboard(){
         $this->categories = Category::all();
-        return view('dashboard.blogger.index',['categories'=>$this->categories]);
+        return view('dashboard.blogger.blog.index',['categories'=>$this->categories]);
     }
     //this is for create new blog
     public function createNewBlog(Request $request){
@@ -46,11 +46,27 @@ class DashboardController extends Controller
         $user_id = Session::get('user_id');
         $this->blogs = Blog::where('user_id', $user_id)->get();
         $this->categories = Category::all();
-        return view('dashboard.blogger.manageBlog',['blogs'=>$this->blogs,'categories'=>$this->categories]);
+        return view('dashboard.blogger.blog.manageBlog',['blogs'=>$this->blogs,'categories'=>$this->categories]);
     }
 
+    public function editBlog($id){
+        $this->blog=Blog::find($id);
+        $this->categories = Category::all();
+        return view('dashboard.blogger.blog.editBlog',['blog'=>$this->blog,'categories'=>$this->categories]);
+    }
+    public function updateBlog(Request $request,$id){
+        blog::updateNewBlog($request,$id);
+        return redirect('/dashboard/manage-blog')->with('message','Blog updated successfully');
+    }
+
+    public function deleteBlog($id){
+        blog::deleteBlog($id);
+        return redirect('/dashboard/manage-blog')->with('message','Blog deleted successfully');
+    }
+
+
     public function addBlogCategory(){
-        return view('dashboard.blogger.addCategory');
+        return view('dashboard.blogger.category.addCategory');
     }
 
     public function addCategory(Request $request){
@@ -62,13 +78,15 @@ class DashboardController extends Controller
     }
 
     public function manageCategory(){
-        $this->categories = Category::all();
-        return view('dashboard.blogger.manageCategory',['categories'=>$this->categories]);
+//        $this->categories = Category::all();
+        $user_id = Session::get('user_id');
+        $this->categories = Category::where('user_id', $user_id)->get();
+        return view('dashboard.blogger.category.manageCategory',['categories'=>$this->categories]);
     }
 
     public function editCategory($id){
         $this->category = Category::find($id);
-        return view('dashboard.blogger.editCategory',['category'=>$this->category]);
+        return view('dashboard.blogger.category.editCategory',['category'=>$this->category]);
     }
 
     public function updateCategory(Request $request,$id){

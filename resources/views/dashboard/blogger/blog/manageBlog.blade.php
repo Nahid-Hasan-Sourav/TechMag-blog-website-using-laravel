@@ -19,7 +19,7 @@
                             <th>Blog title</th>
                             <th>Description</th>
                             <th>Image</th>
-                            <th>Category Name</th>
+                            <th>blog Name</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -39,39 +39,42 @@
                                     />
                                 </td>
 
+
                                 <td>
-                                    @foreach ($categories as $item)
-                                        @if ($item['id'] === $blog->category_id)
-                                            {{ $item['category_name'] }}
+                                    @foreach ($categories as $category)
+                                        @if ($category['id'] === $blog->category_id)
+                                            {{ $category['category_name'] }}
                                             @break
                                         @endif
                                     @endforeach
                                 </td>
 
 
-                                {{--                                <td>--}}
-{{--                                    <a href="{{route('blog.edit', ['id'=>$blog->id])}}" class="btn btn-success btn-sm">--}}
-{{--                                        <i class="fa fa-edit"></i>--}}
-{{--                                    </a>--}}
 
-{{--                                    --}}{{--delete using form--}}
+                                <td>
+                                    <div class="d-flex">
+                                        <a href="{{route('edit.blog', ['id'=>$blog->id])}}" class="btn btn-success btn-sm">
+                                            {{--                                        <i class="fa fa-edit"></i>--}}
+                                            edit
+                                        </a>
 
-{{--                                    <form action="{{route('blog.delete', ['id'=>$blog->id])}}" method='POST'--}}
-{{--                                          onsubmit="return confirm('Are you sure you want to delete this ')"--}}
-{{--                                    >--}}
-{{--                                        @csrf--}}
+                                        {{--                                      delete using form--}}
 
-{{--                                        <button type='submit' class='btn btn-danger btn-sm'>--}}
-{{--                                            <i class='fa fa-trash'></i>--}}
-{{--                                        </button>--}}
+                                        <form class="mx-2" action="{{route('delete.blog', ['id'=>$blog->id])}}" method='POST'
+                                              onsubmit="return confirm('Are you sure you want to delete this ')">
+                                            @csrf
 
-{{--                                    </form>--}}
-{{--                                    --}}{{--                                <a href="{{route('blog.delete', ['id'=>$blog->id])}}" class="btn btn-danger btn-sm"--}}
+                                            <button type='submit' class='btn btn-danger btn-sm'>
+                                                {{--                                            <i class='fa fa-trash'></i>--}}
+                                                delete
+                                            </button>
 
-{{--                                    --}}{{--                                >--}}
-{{--                                    --}}{{--                                    <i class="fa fa-trash"></i>--}}
-{{--                                    --}}{{--                                </a>--}}
-{{--                                </td>--}}
+                                        </form>
+
+
+                                    </div>
+                                </td>
+
                             </tr>
 
                         @endforeach
