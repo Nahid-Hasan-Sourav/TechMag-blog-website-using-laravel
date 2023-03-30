@@ -1,13 +1,13 @@
 @extends('dashboard.master')
 
-@section('body')
+@section('rightContent')
     <div class="row">
 
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">All Teachers Info</h4>
+                    <h4 class="card-title">All blogs Info</h4>
                     <h4 class="text-center text-success">
                         {{session('message')}}
                     </h4>
@@ -16,52 +16,62 @@
                         <thead>
                         <tr>
                             <th>SL NO</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
+                            <th>Blog title</th>
+                            <th>Description</th>
                             <th>Image</th>
+                            <th>Category Name</th>
                             <th>Action</th>
                         </tr>
                         </thead>
 
 
                         <tbody>
-                        @foreach($allTeachers as $teacher)
+                        @foreach($blogs as $blog)
                             <tr>
                                 <th>{{$loop->iteration}}</th>
-                                <td>{{$teacher->name}}</td>
-                                <td>{{$teacher->email}}</td>
-                                <td>{{$teacher->mobile}}</td>
+                                <td>{{$blog->blog_title}}</td>
+                                <td>{{$blog->description}}</td>
+
                                 <td>
-                                    <img src="{{asset($teacher->image)}}"
+                                    <img src="{{asset($blog->image)}}"
                                          height="30px",
                                          width="40px"
                                     />
                                 </td>
 
                                 <td>
-                                    <a href="{{route('teacher.edit', ['id'=>$teacher->id])}}" class="btn btn-success btn-sm">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-
-                                    {{--delete using form--}}
-
-                                    <form action="{{route('teacher.delete', ['id'=>$teacher->id])}}" method='POST'
-                                          onsubmit="return confirm('Are you sure you want to delete this ')"
-                                    >
-                                        @csrf
-
-                                        <button type='submit' class='btn btn-danger btn-sm'>
-                                            <i class='fa fa-trash'></i>
-                                        </button>
-
-                                    </form>
-                                    {{--                                <a href="{{route('teacher.delete', ['id'=>$teacher->id])}}" class="btn btn-danger btn-sm"--}}
-
-                                    {{--                                >--}}
-                                    {{--                                    <i class="fa fa-trash"></i>--}}
-                                    {{--                                </a>--}}
+                                    @foreach ($categories as $item)
+                                        @if ($item['id'] === $blog->category_id)
+                                            {{ $item['category_name'] }}
+                                            @break
+                                        @endif
+                                    @endforeach
                                 </td>
+
+
+                                {{--                                <td>--}}
+{{--                                    <a href="{{route('blog.edit', ['id'=>$blog->id])}}" class="btn btn-success btn-sm">--}}
+{{--                                        <i class="fa fa-edit"></i>--}}
+{{--                                    </a>--}}
+
+{{--                                    --}}{{--delete using form--}}
+
+{{--                                    <form action="{{route('blog.delete', ['id'=>$blog->id])}}" method='POST'--}}
+{{--                                          onsubmit="return confirm('Are you sure you want to delete this ')"--}}
+{{--                                    >--}}
+{{--                                        @csrf--}}
+
+{{--                                        <button type='submit' class='btn btn-danger btn-sm'>--}}
+{{--                                            <i class='fa fa-trash'></i>--}}
+{{--                                        </button>--}}
+
+{{--                                    </form>--}}
+{{--                                    --}}{{--                                <a href="{{route('blog.delete', ['id'=>$blog->id])}}" class="btn btn-danger btn-sm"--}}
+
+{{--                                    --}}{{--                                >--}}
+{{--                                    --}}{{--                                    <i class="fa fa-trash"></i>--}}
+{{--                                    --}}{{--                                </a>--}}
+{{--                                </td>--}}
                             </tr>
 
                         @endforeach

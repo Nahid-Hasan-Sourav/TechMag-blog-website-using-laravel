@@ -1,47 +1,33 @@
-@extends('dashboard.master')
 
+@extends('dashboard.master')
+@section('title')
+    Edit-Category
+@endsection
 @section('rightContent')
     <div class="row ">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Add New Blog</h4>
+                    <h4 class="card-title mb-4">Add New Category</h4>
                     <h4 class="text-center text-success">
                         {{session('message')}}
                     </h4>
-                    <form action="{{route('create.blog')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('update.category',['id'=>$category->id])}}" method="POST" enctype="multipart/form-data">
                         @csrf
-
                         <div class="form-group row mb-4">
                             <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Category Name</label>
                             <div class="col-sm-9">
-                              <select class="form-control" name="category_id">
-                                  <option > --- Select Blog Category --- </option>
-                                  @foreach($categories as $category)
-                                      <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                  @endforeach
-                              </select>
+                                <input type="text" name="category_name" class="form-control" id="horizontal-firstname-input"
+                                value="{{$category->category_name}}"
+                                >
                             </div>
                         </div>
-
-                        <div class="form-group row mb-4">
-                            <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Blog Title</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="blog_title" class="form-control" id="horizontal-firstname-input">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="horizontal-email-input" class="col-sm-3 col-form-label">Blog Description</label>
-                            <div class="col-sm-9">
-                                <textarea name="description" class="form-control" placeholder="" id="floatingTextarea"></textarea>
-                            </div>
-                        </div>
-
 
                         <div class="form-group row mb-4">
                             <label for="horizontal-password-input" class="col-sm-3 col-form-label">Image</label>
                             <div class="col-sm-9">
                                 <input type="file" name="image" class="form-control-file" >
+                                <img src="{{asset($category->image)}}" height="100" width="100"/>
                             </div>
                         </div>
 
@@ -53,7 +39,7 @@
                                 {{--                               </div>--}}
 
                                 <div>
-                                    <button type="submit" class="btn btn-primary w-md">Create New Blog</button>
+                                    <button type="submit" class="btn btn-primary w-md">Update Category</button>
                                 </div>
                             </div>
                         </div>
@@ -63,3 +49,4 @@
         </div>
     </div>
 @endsection
+

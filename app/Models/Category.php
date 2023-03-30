@@ -34,4 +34,30 @@ class Category extends Model
 
     }
 
+    public static function updateNewCategory($request,$id){
+        self::$category = Category::find($id);
+        if($request->file('image')){
+            if(file_exists(self::$category->image)){
+                unlink(self::$category->image);
+            }
+            self::$imageUrl=self::getImageUrl($request);
+        }
+        else{
+            self::$imageUrl = self::$category->image;
+        }
+        self::$category->category_name    = $request->category_name;
+        self::$category->image    = self::$imageUrl;
+
+    }
+
+    public static function deleteCategory($id){
+            self::$category = Category::find($id);
+
+        if(file_exists(self::$category->image)){
+            unlink(self::$category->image);
+        }
+        self::$category->delete();
+
+    }
+
 }

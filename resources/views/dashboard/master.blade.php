@@ -34,7 +34,7 @@
                                <a href="{{route('add.blog.category')}}" class="nav-link">ADD BLOG CATEGORY</a>
                            </li>
                            <li class="nav-item bg-primary text-white">
-                               <a href="{{route('add.blog.category')}}" class="nav-link">MANAGE CATEGORY</a>
+                               <a href="{{route('manage.category')}}" class="nav-link">MANAGE CATEGORY</a>
                            </li>
 
                        </ul>

@@ -23,31 +23,33 @@ Route::post('/login',[UserAuthController::class,'login'])->name('login');
 Route::get('/sign-up',[UserAuthController::class,'registration'])->name('signUp');
 Route::post('/create-user',[UserAuthController::class,'createUser'])->name('user.signUp');
 
-//
-//Route::get('/user-dashboard',[DashboardController::class,'userDashboard'])->name('user.dashboard');
-//Route::get('/admin-dashboard',[DashboardController::class,'adminDashboard'])->name('admin.dashboard');
-//Route::get('/blogger-dashboard',[DashboardController::class,'bloggerDashboard'])->name('blogger.dashboard');
-//Route::get('/dashboard/add',[DashboardController::class,'addBlog'])->name('add.blog');
-//Route::get('/dashboard/manage',[DashboardController::class,'manageBlog'])->name('manage.blog');
 
-//Route::middleware(['checkUserRole'])->group(function (){
-//    Route::get('/user-dashboard',[DashboardController::class,'userDashboard'])->name('user.dashboard');
-//    Route::get('/admin-dashboard',[DashboardController::class,'adminDashboard'])->name('admin.dashboard');
-//    Route::get('/blogger-dashboard',[DashboardController::class,'bloggerDashboard'])->name('blogger.dashboard');
-//
-//});
-
+//this is for admin route
 Route::middleware(['checkUserRole:Admin'])->group(function () {
     Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
 });
 
+//this is for blogger route
 Route::middleware(['checkUserRole:Blogger'])->group(function () {
     Route::get('/blogger-dashboard', [DashboardController::class, 'bloggerDashboard'])->name('blogger.dashboard');
-    Route::post('/dashboard/add-category',[DashboardController::class,'addCategory'])->name('add.category');
+
+
+    Route::post('/dashboard/create-new-blog',[DashboardController::class,'createNewBlog'])->name('create.blog');
     Route::get('/dashboard/manage-blog',[DashboardController::class,'manageBlog'])->name('manage.blog');
+
+
+    Route::post('/dashboard/add-category',[DashboardController::class,'addCategory'])->name('add.category');
     Route::get('/dashboard/add-blog-category',[DashboardController::class,'addBlogCategory'])->name('add.blog.category');
+    Route::get('/dashboard/manage-blog-category',[DashboardController::class,'manageCategory'])->name('manage.category');
+    Route::get('/dashboard/edit-category/{id}',[DashboardController::class,'editCategory'])->name('edit.category');
+    Route::post('/dashboard/update-category/{id}',[DashboardController::class,'updateCategory'])->name('update.category');
+    Route::post('/dashboard/delete-category/{id}',[DashboardController::class,'deleteCategory'])->name('delete.category');
+
+
 });
 
+
+//this is for user route
 Route::middleware(['checkUserRole:User'])->group(function () {
     Route::get('/user-dashboard', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
 });
