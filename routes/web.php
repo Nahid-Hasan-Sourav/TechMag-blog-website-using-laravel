@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\WelcomeController;
 use \App\Http\Controllers\DashboardController;
 use \App\Http\Controllers\UserAuthController;
+use \App\Http\Controllers\BlogController;
+use \App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::middleware(['checkUserRole:Admin'])->group(function () {
 
 //this is for blogger route
 Route::middleware(['checkUserRole:Blogger'])->group(function () {
-    Route::get('/blogger-dashboard', [DashboardController::class, 'bloggerDashboard'])->name('blogger.dashboard');
+    Route::get('/blogger-dashboard', [BlogController::class, 'index'])->name('blogger.dashboard');
 
 
     Route::post('/dashboard/create-new-blog',[DashboardController::class,'createNewBlog'])->name('create.blog');
@@ -41,12 +43,12 @@ Route::middleware(['checkUserRole:Blogger'])->group(function () {
     Route::post('/dashboard/delete-blog/{id}',[DashboardController::class,'deleteBlog'])->name('delete.blog');
 
 
-    Route::post('/dashboard/add-category',[DashboardController::class,'addCategory'])->name('add.category');
-    Route::get('/dashboard/add-blog-category',[DashboardController::class,'addBlogCategory'])->name('add.blog.category');
-    Route::get('/dashboard/manage-blog-category',[DashboardController::class,'manageCategory'])->name('manage.category');
-    Route::get('/dashboard/edit-category/{id}',[DashboardController::class,'editCategory'])->name('edit.category');
-    Route::post('/dashboard/update-category/{id}',[DashboardController::class,'updateCategory'])->name('update.category');
-    Route::post('/dashboard/delete-category/{id}',[DashboardController::class,'deleteCategory'])->name('delete.category');
+    Route::post('/dashboard/add-category',[CategoryController::class,'addCategory'])->name('add.category');
+    Route::get('/dashboard/add-blog-category',[CategoryController::class,'addBlogCategory'])->name('add.blog.category');
+    Route::get('/dashboard/manage-blog-category',[CategoryController::class,'manageCategory'])->name('manage.category');
+    Route::get('/dashboard/edit-category/{id}',[CategoryController::class,'editCategory'])->name('edit.category');
+    Route::post('/dashboard/update-category/{id}',[CategoryController::class,'updateCategory'])->name('update.category');
+    Route::post('/dashboard/delete-category/{id}',[CategoryController::class,'deleteCategory'])->name('delete.category');
 
 
 });

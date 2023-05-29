@@ -20,6 +20,8 @@
                             <th>Description</th>
                             <th>Image</th>
                             <th>blog Name</th>
+                            <th>latest status</th>
+                            <th>featured Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -49,7 +51,12 @@
                                     @endforeach
                                 </td>
 
-
+                                <td>
+                                    Inactive
+                                </td>
+                                <td>
+                                    Inactive
+                                </td>
 
                                 <td>
                                     <div class="d-flex">

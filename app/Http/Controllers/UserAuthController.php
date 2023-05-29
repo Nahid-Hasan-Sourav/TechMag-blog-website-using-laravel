@@ -18,7 +18,7 @@ class UserAuthController extends Controller
 
     public function createUser(Request $request){
         user :: createNewUser($request);
-        return redirect('/login')->with('message','Registration Completed Successfully');
+        return redirect('/login')->with('registration-message','Registration Completed Successfully');
     }
 
     public function index(){

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-5 ">
                 <div class="card my-5">
-
+                    <h3 class="text-success text-center">{{Session::get('registration-message') }}</h3>
                     <form class="card-body p-lg-5" action="{{route('login')}}" method="POST">
                         @csrf
                         <div class="text-center">

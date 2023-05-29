@@ -11,11 +11,16 @@ class Category extends Model
     use HasFactory;
     private static $category,$image,$directory,$extension,$imageUrl,$imageName;
 
+
+    public function blogs(){
+        return $this->hasMany(Blog::class);
+    }
+
     private static function getImageUrl($request){
         self::$image            =$request->file('image');
         self::$extension        =self::$image->getClientOriginalExtension();
         self::$imageName        =time().'.'.self::$extension;
-        self::$directory        ='teacher-images/';
+        self::$directory        ='category-images/';
         self::$image->move(self::$directory, self::$imageName);
         self::$imageUrl         =self::$directory.self::$imageName;
 

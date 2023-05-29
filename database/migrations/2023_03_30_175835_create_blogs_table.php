@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('user_id')->nullable();
             $table->string('user_name')->nullable();
             $table->string('user_email')->nullable();
+            $table->string('user_image')->nullable();
             $table->integer('category_id');
             $table->string('blog_title');
             $table->text('description');
