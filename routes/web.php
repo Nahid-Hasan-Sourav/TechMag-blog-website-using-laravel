@@ -36,11 +36,11 @@ Route::middleware(['checkUserRole:Blogger'])->group(function () {
     Route::get('/blogger-dashboard', [BlogController::class, 'index'])->name('blogger.dashboard');
 
 
-    Route::post('/dashboard/create-new-blog',[DashboardController::class,'createNewBlog'])->name('create.blog');
-    Route::get('/dashboard/manage-blog',[DashboardController::class,'manageBlog'])->name('manage.blog');
-    Route::get('/dashboard/edit-blog/{id}',[DashboardController::class,'editBlog'])->name('edit.blog');
-    Route::post('/dashboard/update-blog/{id}',[DashboardController::class,'updateBlog'])->name('update.blog');
-    Route::post('/dashboard/delete-blog/{id}',[DashboardController::class,'deleteBlog'])->name('delete.blog');
+    Route::post('/dashboard/create-new-blog',[BlogController::class,'createNewBlog'])->name('create.blog');
+    Route::get('/dashboard/manage-blog',[BlogController::class,'manageBlog'])->name('manage.blog');
+    Route::get('/dashboard/edit-blog/{id}',[BlogController::class,'editBlog'])->name('edit.blog');
+    Route::post('/dashboard/update-blog/{id}',[BlogController::class,'updateBlog'])->name('update.blog');
+    Route::post('/dashboard/delete-blog/{id}',[BlogController::class,'deleteBlog'])->name('delete.blog');
 
 
     Route::post('/dashboard/add-category',[CategoryController::class,'addCategory'])->name('add.category');

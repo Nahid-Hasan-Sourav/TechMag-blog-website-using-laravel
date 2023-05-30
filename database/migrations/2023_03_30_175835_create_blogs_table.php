@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('user_name')->nullable();
             $table->string('user_email')->nullable();
             $table->string('user_image')->nullable();
-            $table->integer('category_id');
-            $table->string('blog_title');
-            $table->text('description');
-            $table->text('image');
+            $table->integer('category_id')->nullable();
+            $table->string('blog_title')->nullable();
+            $table->text('description')->nullable();
+            $table->text('image')->nullable();
 
             $table->timestamps();
         });

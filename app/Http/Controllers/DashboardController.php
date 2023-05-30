@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Blog;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 
 
 
@@ -34,35 +35,35 @@ class DashboardController extends Controller
     //     return view('dashboard.blogger.blog.index',['categories'=>$this->categories]);
     // }
     //this is for create new blog
-    public function createNewBlog(Request $request){
+    // public function createNewBlog(Request $request){
 
-           //return $request->all();
-            Blog::createNewBlogs($request);
-            return back()->with('message','Blog Added Successfully');
+    //        //return $request->all();
+    //         Blog::createNewBlogs($request);
+    //         return back()->with('message','Blog Added Successfully');
 
-    }
+    // }
 
-    public function manageBlog(){
-        $user_id = Session::get('user_id');
-        $this->blogs = Blog::where('user_id', $user_id)->get();
-        $this->categories = Category::all();
-        return view('dashboard.blogger.blog.manageBlog',['blogs'=>$this->blogs,'categories'=>$this->categories]);
-    }
+    // public function manageBlog(){
+    //     $user_id = Session::get('user_id');
+    //     $this->blogs = Blog::where('user_id', $user_id)->get();
+    //     $this->categories = Category::all();
+    //     return view('dashboard.blogger.blog.manageBlog',['blogs'=>$this->blogs,'categories'=>$this->categories]);
+    // }
 
-    public function editBlog($id){
-        $this->blog=Blog::find($id);
-        $this->categories = Category::all();
-        return view('dashboard.blogger.blog.editBlog',['blog'=>$this->blog,'categories'=>$this->categories]);
-    }
-    public function updateBlog(Request $request,$id){
-        blog::updateNewBlog($request,$id);
-        return redirect('/dashboard/manage-blog')->with('message','Blog updated successfully');
-    }
+    // public function editBlog($id){
+    //     $this->blog=Blog::find($id);
+    //     $this->categories = Category::all();
+    //     return view('dashboard.blogger.blog.editBlog',['blog'=>$this->blog,'categories'=>$this->categories]);
+    // }
+    // public function updateBlog(Request $request,$id){
+    //     blog::updateNewBlog($request,$id);
+    //     return redirect('/dashboard/manage-blog')->with('message','Blog updated successfully');
+    // }
 
-    public function deleteBlog($id){
-        blog::deleteBlog($id);
-        return redirect('/dashboard/manage-blog')->with('message','Blog deleted successfully');
-    }
+    // public function deleteBlog($id){
+    //     blog::deleteBlog($id);
+    //     return redirect('/dashboard/manage-blog')->with('message','Blog deleted successfully');
+    // }
 
 
 //     public function addBlogCategory(){

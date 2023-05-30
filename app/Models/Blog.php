@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 
 
 
@@ -20,34 +21,58 @@ class Blog extends Model
 }
 
     private static function getImageUrl($request){
-        self::$image            =$request->file('image');
-        self::$extension        =self::$image->getClientOriginalExtension();
-        self::$imageName        =time().'.'.self::$extension;
-        self::$directory        ='teacher-images/';
-        self::$image->move(self::$directory, self::$imageName);
-        self::$imageUrl         =self::$directory.self::$imageName;
+
+        if ($request->has('image') && $request->file('image')->isValid()){
+            self::$image            =$request->file('image');
+            self::$extension        =self::$image->getClientOriginalExtension();
+            self::$imageName        =time().'.'.self::$extension;
+            self::$directory        ='blog-images/';
+            self::$image->move(self::$directory, self::$imageName);
+            self::$imageUrl         =self::$directory.self::$imageName;
+        }
+
 
         return self::$imageUrl;
     }
 
-    public static function createNewBlogs($request){
-        self::$blog = new Blog();
+    // public static function createNewBlogs($request){
+    //     self::$blog = new Blog();
 
-        self::$blog->user_id    = Session::get('user_id') ;
-        self::$blog->user_name =  Session::get('user_name');
-        self::$blog->user_email = Session::get('user_email');
-        self::$blog->user_image = Session::get('user_image');
+    //     self::$blog->user_id    = Session::get('user_id') ;
+    //     self::$blog->user_name =  Session::get('user_name');
+    //     self::$blog->user_email = Session::get('user_email');
+    //     self::$blog->user_image = Session::get('user_image');
 
-        self::$blog->category_id= $request->category_id;
-        self::$blog->blog_title=$request->blog_title;
-        self::$blog->description=$request->description;
-        self::$blog->image = self::getImageUrl($request);
+    //     self::$blog->category_id= $request->category_id;
+    //     self::$blog->blog_title=$request->blog_title;
+    //     self::$blog->description=$request->blog_description;
+    //     self::$blog->image = self::getImageUrl($request->image);
+    //     error_log(self::$blog->image);
+    //     self::$blog->save();
 
-        self::$blog->save();
+
+    // }
+
+    public static function createNewBlogs($request)
+{
+    self::$blog = new Blog();
+
+    self::$blog->user_id = Session::get('user_id');
+    self::$blog->user_name = Session::get('user_name');
+    self::$blog->user_email = Session::get('user_email');
+    self::$blog->user_image = Session::get('user_image');
+
+    self::$blog->category_id = $request->category_id;
+    self::$blog->blog_title = $request->blog_title;
+    self::$blog->description = $request->blog_description;
+    self::$blog->image = self::getImageUrl($request);
+
+    self::$blog->save();
+}
 
 
 
-    }
+
     public static function updateNewBlog($request,$id){
         self::$blog= Blog::find($id);
         if($request->file('image')){

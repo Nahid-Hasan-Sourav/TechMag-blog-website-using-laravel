@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 
 class Category extends Model
 {
@@ -17,12 +18,15 @@ class Category extends Model
     }
 
     private static function getImageUrl($request){
-        self::$image            =$request->file('image');
-        self::$extension        =self::$image->getClientOriginalExtension();
-        self::$imageName        =time().'.'.self::$extension;
-        self::$directory        ='category-images/';
-        self::$image->move(self::$directory, self::$imageName);
-        self::$imageUrl         =self::$directory.self::$imageName;
+        if ($request->hasFile('image')){
+            self::$image            =$request->file('image');
+            self::$extension        =self::$image->getClientOriginalExtension();
+            self::$imageName        =time().'.'.self::$extension;
+            self::$directory        ='category-images/';
+            self::$image->move(self::$directory, self::$imageName);
+            self::$imageUrl         =self::$directory.self::$imageName;
+
+        }
 
         return self::$imageUrl;
     }
