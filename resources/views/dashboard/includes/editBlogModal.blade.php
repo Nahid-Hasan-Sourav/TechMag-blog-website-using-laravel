@@ -1,8 +1,8 @@
-<div class="modal fade blog-add-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade blog-edit-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">ADD NEW BLOG</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">EDIT BLOG</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -13,11 +13,9 @@
                         <div class="form-group row mb-4">
                             <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Category Name</label>
                             <div class="col-sm-9">
-                              <select class="form-control category_id"  name="category_id">
+                              <select class="form-control category_id category_option"  name="category_id">
                                   <option > --- Select Blog Category --- </option>
-                                  @foreach($categories as $category)
-                                      <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                  @endforeach
+
                               </select>
                             </div>
                         </div>
@@ -40,6 +38,9 @@
                             <label for="horizontal-password-input" class="col-sm-3 col-form-label">Image</label>
                             <div class="col-sm-9">
                                 <input type="file" name="image" class="form-control-file blog-image" >
+                                <!-- Store the asset path in a data attribute -->
+                                <div class="asset-path" data-asset="{{ asset('') }}"></div>
+                                <img src="" class="show-image" height="100" width="100"/>
                             </div>
                         </div>
 
@@ -52,7 +53,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-            <button type="submit" class="btn btn-primary w-md" id="create-new-blog">Create New Blog</button>
+            <button type="submit" class="btn btn-primary w-md update-blog-btn" value="" id="create-new-blog">Update Blog</button>
 
         </div>
       </div>

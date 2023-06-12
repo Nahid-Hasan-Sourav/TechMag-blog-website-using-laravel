@@ -65,6 +65,8 @@ class Blog extends Model
     self::$blog->category_id = $request->category_id;
     self::$blog->blog_title = $request->blog_title;
     self::$blog->description = $request->blog_description;
+    self::$blog->latest_status = "active";
+    self::$blog->features_status ="active";
     self::$blog->image = self::getImageUrl($request);
 
     self::$blog->save();

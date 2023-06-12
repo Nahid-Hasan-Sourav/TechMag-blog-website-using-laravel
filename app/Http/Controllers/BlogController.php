@@ -40,7 +40,7 @@ class BlogController extends Controller
 public function createNewBlog(Request $request){
     try {
 
-       
+
         Blog::createNewBlogs($request);
 
         return response()->json([
@@ -66,6 +66,30 @@ public function createNewBlog(Request $request){
      $this->categories = Category::all();
      return view('dashboard.blogger.blog.editBlog',['blog'=>$this->blog,'categories'=>$this->categories]);
  }
+
+//  edit using ajax
+ public function editBlogAjax($id){
+    $blog=Blog::find($id);
+    $categories = Category::all();
+    // return $categories;
+    // dd();
+
+    if($blog){
+        return response()->json([
+            'status'=>"200",
+            'data'=>$blog,
+            'categories'=>$categories
+        ]);
+    }
+
+    else{
+        return response()->json([
+            'status'=>"400"
+        ]);
+    }
+
+}
+
  public function updateBlog(Request $request,$id){
      blog::updateNewBlog($request,$id);
      return redirect('/dashboard/manage-blog')->with('message','Blog updated successfully');

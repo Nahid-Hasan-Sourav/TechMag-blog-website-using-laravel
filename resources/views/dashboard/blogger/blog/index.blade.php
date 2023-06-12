@@ -28,25 +28,41 @@
 
 
                         <tbody>
-
+                            @foreach ($blogs as $blog)
                             <tr>
-                                <th></th>
-                                <td></td>
-                                <th></th>
-                                <td></td>
-                                <td></td>
+                                <th>{{$loop->iteration}}</th>
+                                <td>{{ $blog->blog_title }}</td>
+                                <th>{{$blog->description}}</th>
+                                <td>{{ $blog->category->category_name }}</td>
                                 <td>
+                                    <img src="{{asset($blog->image)}}"
+                                    height="30px",
+                                    width="40px"
+                                    />
+                                </td>
+                                <td>
+                                    @if ($blog->latest_status == "active")
+                                    <button class="btn btn-success">Active</button>
+                                @else
+                                    <button class="btn btn-danger">Inactive</button>
+                                @endif
 
                                 </td>
                                 <td>
-
+                                    @if ($blog->latest_status == "active")
+                                    <button class="btn btn-success">Active</button>
+                                @else
+                                    <button class="btn btn-danger">Inactive</button>
+                                @endif
                                 </td>
 
                                 <td>
-                                   <button class="btn btn-md btn-success" id="edit-blog-btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                                   <button class="btn btn-md btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                   <button class="btn btn-md btn-success edit-blog-btn"  value="{{ $blog->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                   <button class="btn btn-md btn-danger delete-blog-btn"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
+                            @endforeach
+
 
 
                         </tbody>
@@ -57,10 +73,9 @@
         </div>
 
         @include('dashboard.includes.addModal')
+        @include('dashboard.includes.editBlogModal')
     </div>
 @endsection
-
-
 
 {{-- <div class="card">
     <div class="card-body">
@@ -71,3 +86,9 @@
 
     </div>
 </div> --}}
+
+
+
+
+
+

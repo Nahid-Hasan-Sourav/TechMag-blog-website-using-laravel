@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('category_id')->nullable();
             $table->string('blog_title')->nullable();
             $table->text('description')->nullable();
+            $table->string('latest_status')->nullable();
+            $table->string('features_status')->nullable();
             $table->text('image')->nullable();
 
             $table->timestamps();
