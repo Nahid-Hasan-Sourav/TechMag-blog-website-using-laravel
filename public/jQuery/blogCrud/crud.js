@@ -1,4 +1,7 @@
+
 jQuery(document).ready(function () {
+
+
     // ADD BLOG START HERE
     jQuery(".add-new-blog-btn").click(function () {
         jQuery(".blog-add-modal").modal("show");
@@ -141,9 +144,105 @@ jQuery(document).ready(function () {
 
     jQuery(".update-blog-btn").click(function(){
         var id=jQuery(this).val();
+        // alert(id)
+        var category_id = jQuery("#category_option").val();
+        var blog_title = jQuery(".blog_title").val();
+        var description =jQuery("#blog-description").val();
+        var image = jQuery("#blog_image")[0].files[0];
+
+        var formData = new FormData();
+        formData.append("category_id", category_id);
+        formData.append("blog_title", blog_title);
+        formData.append("description", description);
+        formData.append("image", image);
+
+        console.log("Form Data ",formData);
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            url: "/dashboard/ed/update/"+id,
+            type: "POST",
+
+            data: formData,
+            contentType: false, // Set contentType to false for file uploads
+            processData: false, // Set processData to false for file uploads
+            success: function (response) {
+
+                if(response.status == "200"){
+                    // $('#datatable').find('tbody').html(response.updatedTableHTML)
+                    // console.log("Check ",response.updatedTableHTML)
+
+                    window.location.reload();
+
+                    jQuery(".blog-edit-modal").modal("hide");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Blog Updated',
+                        text: 'The Blog has been successfully updated.',
+                      });
+                }
+
+               console.log("Id",response);
+
+
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: ", error);
+                var response = JSON.parse(xhr.responseText);
+                console.log("Error Message: ", response.message);
+            },
+        });
+
 
 
     });
 
     //UPDATE END HERE
-});
+
+
+    //update featured status
+
+    $('.status-button').click(function() {
+        var blogId = $(this).val();
+        // alert(blogId)
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            url: '/dashboard/ed/update/featureStatus/'+blogId, // Replace with your server-side endpoint URL
+            type: 'POST',
+            dataType: 'json',
+            //data: { blogId: blogId },
+            success: function(response) {
+              if (response.status === 'success') {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Features Status Updated',
+                    text: 'The Features Status has been successfully updated.',
+                    timer: 5000, // Set the timer to 3000 milliseconds (3 seconds)
+                    showConfirmButton: true // Hide the "OK" button
+                  }).then(() => {
+                    // After the timer expires, reload the page
+                    window.location.reload();
+                  });
+
+              }
+            },
+            error: function(xhr, status, error) {
+              console.log('Error:', error);
+            }
+          });
+        });
+
+
+})

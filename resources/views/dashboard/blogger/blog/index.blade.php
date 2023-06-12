@@ -33,7 +33,7 @@
                                 <th>{{$loop->iteration}}</th>
                                 <td>{{ $blog->blog_title }}</td>
                                 <th>{{$blog->description}}</th>
-                                <td>{{ $blog->category->category_name }}</td>
+                                <td>{{ $blog->category ? $blog->category->category_name : 'N/A' }}</td>
                                 <td>
                                     <img src="{{asset($blog->image)}}"
                                     height="30px",
@@ -49,11 +49,18 @@
 
                                 </td>
                                 <td>
-                                    @if ($blog->latest_status == "active")
-                                    <button class="btn btn-success">Active</button>
-                                @else
-                                    <button class="btn btn-danger">Inactive</button>
-                                @endif
+                                    @if ($blog->features_status == "active")
+                                    <button class="btn btn-success status-button" value="{{ $blog->id }}">Active</button>
+                                    @else
+                                    <button class="btn btn-danger status-button" value="{{ $blog->id }}">Inactive</button>
+                                    @endif
+
+                                    {{-- @if ($blog->latest_status == "active")
+                                    <button class="btn btn-success status-button" data-blog-id="{{ $blog->id }}">Active</button>
+                                    @else
+                                    <button class="btn btn-danger status-button" data-blog-id="{{ $blog->id }}">Inactive</button>
+                                    @endif --}}
+
                                 </td>
 
                                 <td>

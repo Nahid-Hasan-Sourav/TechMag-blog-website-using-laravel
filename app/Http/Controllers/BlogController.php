@@ -37,7 +37,35 @@ class BlogController extends Controller
 
 //  }
 
-public function createNewBlog(Request $request){
+
+
+ public function manageBlog(){
+     $user_id = Session::get('user_id');
+     $this->blogs = Blog::where('user_id', $user_id)->get();
+     $this->categories = Category::all();
+     return view('dashboard.blogger.blog.manageBlog',['blogs'=>$this->blogs,'categories'=>$this->categories]);
+ }
+
+ public function editBlog($id){
+     $this->blog=Blog::find($id);
+     $this->categories = Category::all();
+     return view('dashboard.blogger.blog.editBlog',['blog'=>$this->blog,'categories'=>$this->categories]);
+ }
+
+
+
+ public function updateBlog(Request $request,$id){
+     blog::updateNewBlog($request,$id);
+     return redirect('/dashboard/manage-blog')->with('message','Blog updated successfully');
+ }
+
+ public function deleteBlog($id){
+     blog::deleteBlog($id);
+     return redirect('/dashboard/manage-blog')->with('message','Blog deleted successfully');
+ }
+
+ //create blog
+ public function createNewBlog(Request $request){
     try {
 
 
@@ -54,20 +82,7 @@ public function createNewBlog(Request $request){
     }
 }
 
- public function manageBlog(){
-     $user_id = Session::get('user_id');
-     $this->blogs = Blog::where('user_id', $user_id)->get();
-     $this->categories = Category::all();
-     return view('dashboard.blogger.blog.manageBlog',['blogs'=>$this->blogs,'categories'=>$this->categories]);
- }
-
- public function editBlog($id){
-     $this->blog=Blog::find($id);
-     $this->categories = Category::all();
-     return view('dashboard.blogger.blog.editBlog',['blog'=>$this->blog,'categories'=>$this->categories]);
- }
-
-//  edit using ajax
+ //  edit using ajax
  public function editBlogAjax($id){
     $blog=Blog::find($id);
     $categories = Category::all();
@@ -90,14 +105,49 @@ public function createNewBlog(Request $request){
 
 }
 
- public function updateBlog(Request $request,$id){
-     blog::updateNewBlog($request,$id);
-     return redirect('/dashboard/manage-blog')->with('message','Blog updated successfully');
- }
+// update using ajax
 
- public function deleteBlog($id){
-     blog::deleteBlog($id);
-     return redirect('/dashboard/manage-blog')->with('message','Blog deleted successfully');
- }
+    //Route::post('/dashboard/ed/update/{id}',[BlogController::class,'updateBlogAjax'])->name('blog.update');
+    public function updateBlogAjax(Request $request,$id){
+        $update = Blog::updateNewBlogAjax($request,$id);
+        $requestData = $request->all();
+
+
+        if($update){
+            return response()->json([
+               'status'=>"200",
+                'update'=>$update
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>"400"
+            ]);
+        }
+    }
+
+
+    public function fetureStatusUpdate($blogId){
+        $blog = Blog::find($blogId);
+        if ($blog) {
+        $newStatus = ($blog->features_status === 'active') ? 'inactive' : 'active';
+
+        // Update the latest_status column
+        $blog->features_status = $newStatus;
+        $blog->save();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => ['status' => $newStatus]
+          ]);
+        }
+
+         // Return an error response if the blog record was not found
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Blog record not found.'
+        ], 404);
+
+    }
 
 }
