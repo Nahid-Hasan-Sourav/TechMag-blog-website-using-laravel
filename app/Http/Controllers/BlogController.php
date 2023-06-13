@@ -22,6 +22,10 @@ class BlogController extends Controller
         return view('dashboard.blogger.blog.index',['blogs'=>$blogs],['categories'=>$categories]);
     }
 
+    public function blogDetails(){
+        return view('home.blogDetails.index');
+    }
+
 
 
 

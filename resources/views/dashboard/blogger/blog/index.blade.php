@@ -32,7 +32,8 @@
                             <tr>
                                 <th>{{$loop->iteration}}</th>
                                 <td>{{ $blog->blog_title }}</td>
-                                <th>{{$blog->description}}</th>
+                                <th>{{ Str::limit($blog->description, 30) }}
+                                </th>
                                 <td>{{ $blog->category ? $blog->category->category_name : 'N/A' }}</td>
                                 <td>
                                     <img src="{{asset($blog->image)}}"

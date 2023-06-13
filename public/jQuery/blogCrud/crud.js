@@ -52,6 +52,18 @@ jQuery(document).ready(function () {
 
                if(response.status == "success"){
                 jQuery(".blog-add-modal").modal("hide");
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Blog Added',
+                    text: 'The Blog has been successfully added.',
+                    timer: 5000, // Set the timer to 3000 milliseconds (3 seconds)
+                    showConfirmButton: true // Hide the "OK" button
+                  }).then(() => {
+                    // After the timer expires, reload the page
+                    window.location.reload();
+                  });
+
                }
             },
             error: function (xhr, status, error) {
@@ -177,13 +189,18 @@ jQuery(document).ready(function () {
                     // $('#datatable').find('tbody').html(response.updatedTableHTML)
                     // console.log("Check ",response.updatedTableHTML)
 
-                    window.location.reload();
+                    // window.location.reload();
 
                     jQuery(".blog-edit-modal").modal("hide");
                     Swal.fire({
                         icon: 'success',
-                        title: 'Blog Updated',
-                        text: 'The Blog has been successfully updated.',
+                        title: 'Features Status Updated',
+                        text: 'The Features Status has been successfully updated.',
+                        timer: 5000, // Set the timer to 3000 milliseconds (3 seconds)
+                        showConfirmButton: true // Hide the "OK" button
+                      }).then(() => {
+                        // After the timer expires, reload the page
+                        window.location.reload();
                       });
                 }
 
