@@ -15,7 +15,8 @@
                                <p>{{Session::get('user_role')}}</p>
                            </div>
 
-                               <a href="#" class="text-decoration-none">Edit Profile</a>
+                               <a href="{{ route('blogger.profile', ['id' => session('user_id')]) }}
+                                " class="text-decoration-none">Edit Profile</a>
 
                        </div>
                    </div>

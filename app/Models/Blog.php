@@ -16,9 +16,7 @@ class Blog extends Model
     private static $blog,$image,$directory,$extension,$imageUrl,$imageName;
 
 
-    public function category(){
-        return $this->belongsTo(Category::class);
-}
+
 
     private static function getImageUrl($request){
 
@@ -141,4 +139,8 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+}
 }

@@ -24,7 +24,9 @@ Route::get('/logout',[UserAuthController::class,'logout'])->name('logout');
 Route::post('/login',[UserAuthController::class,'login'])->name('login');
 Route::get('/sign-up',[UserAuthController::class,'registration'])->name('signUp');
 Route::post('/create-user',[UserAuthController::class,'createUser'])->name('user.signUp');
-Route::get('/blog/blog-details',[BlogController::class,'blogDetails'])->name('blog.details');
+Route::get('/blog/blog-details/{id}',[BlogController::class,'blogDetails'])->name('blog.details');
+Route::get('/blog/blogger-profile/{id}',[BlogController::class,'bloggerProfile'])->name('blogger.profile');
+
 
 
 //this is for admin route

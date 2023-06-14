@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Session;
@@ -16,14 +17,24 @@ class BlogController extends Controller
 
     public function index(){
         $categories=Category::all();
-        $blogs = Blog::with('category')->get();
+        ///$blogs = Blog::with('category')->get();
+
+        //$blogs = Blog::with('category')->paginate(5);
+
+        $userId = session('user_id'); // Assuming 'user_id' is the session key storing the user_id
+
+        $blogs = Blog::where('user_id', $userId)->get();
         // return $blogs;
         // die();
         return view('dashboard.blogger.blog.index',['blogs'=>$blogs],['categories'=>$categories]);
     }
 
-    public function blogDetails(){
-        return view('home.blogDetails.index');
+    public function blogDetails($id){
+        $blogDetails = Blog::find($id);
+
+
+
+        return view('home.blogDetails.index',['details'=>$blogDetails]);
     }
 
 
@@ -152,6 +163,18 @@ class BlogController extends Controller
             'message' => 'Blog record not found.'
         ], 404);
 
+    }
+
+
+    public function bloggerProfile($id){
+        $userDetails =User::find($id);
+        $userAllBlog=Blog::where('user_id', $id)->get();
+        return view('home.bloggerprofile.index',
+        [
+            'userDetails' => $userDetails,
+            'userAllBlog' => $userAllBlog
+
+        ]);
     }
 
 }

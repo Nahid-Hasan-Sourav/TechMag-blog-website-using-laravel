@@ -22,7 +22,7 @@
                             }
                         @endphp
 
-                        <a href="{{ route('blog.details') }}" class="{{ $class }}">
+                        <a href="{{ route('blog.details',['id'=>$blog->id]) }}" class="{{ $class }}">
                             <div class="featured-img" style="background-image: url('{{ asset($blog->image) }}');"></div>
                             <div class="text">
                                 @php
@@ -49,7 +49,7 @@
 
 
                     @foreach ($cutBlogsOne as $blog)
-                        <a href="{{ route('blog.details') }}" class="h-entry img-5 h-100 gradient">
+                        <a href="{{ route('blog.details',['id'=>$blog->id]) }}" class="h-entry img-5 h-100 gradient">
 
                             <div class="featured-img" style="background-image: url('{{ asset($blog->image) }}');">
                             </div>
@@ -81,7 +81,7 @@
                             }
                         @endphp
 
-                        <a href="{{ route('blog.details') }}" class="{{ $class }}">
+                        <a href="{{ route('blog.details',['id'=>$blog->id]) }}" class="{{ $class }}">
                             <div class="featured-img" style="background-image: url('{{ asset($blog->image) }}');"></div>
                             <div class="text">
                                 @php
@@ -91,32 +91,11 @@
                                 <h2>{{ $blog->blog_title }}</h2>
                             </div>
                         </a>
-                        {{-- <a href="{{ route('blog.details') }}" class="">
-                        <div class="featured-img" style="background-image: url('{{ asset($blog->image) }}');"></div>
-                    </a> --}}
+
                     @endforeach
 
 
-                    {{-- <a href="{{ route('blog.details') }}" class="h-entry mb-30 v-height gradient">
 
-                        <div class="featured-img" style="background-image: url('{{ asset('/') }}img/blog-1.jpg');">
-                        </div>
-
-                        <div class="text">
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2>Startup vs corporate: What job suits you best?</h2>
-                        </div>
-                    </a>
-                    <a href="{{ route('blog.details') }}" class="h-entry v-height gradient">
-
-                        <div class="featured-img" style="background-image: url('{{ asset('/') }}img/blog-1.jpg');">
-                        </div>
-
-                        <div class="text">
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2>Thought you loved Python? Wait until you meet Rust</h2>
-                        </div>
-                    </a> --}}
                 </div>
             </div>
         </div>
@@ -151,7 +130,7 @@
                         @foreach ($cutBlogsFashion as $fashion)
                             <div class="col-md-6">
                                 <div class="blog-entry">
-                                    <a href="{{ route('blog.details') }}" class="img-link">
+                                    <a href="{{ route('blog.details',['id'=>$fashion->id]) }}" class="img-link">
                                         <img src="{{ asset($fashion->image) }}" alt="Image" class="w-100"
                                             style="height:200px">
                                     </a>
@@ -162,7 +141,7 @@
                                     <p class="date">{{ $formattedDate }}</p>
 
                                     <h2>
-                                        <a href="{{ route('blog.details') }}">
+                                        <a href="{{ route('blog.details',['id'=>$fashion->id]) }}">
                                             {{ Str::limit($fashion->blog_title, 50) }}
                                         </a>
                                     </h2>
@@ -170,7 +149,7 @@
                                         {{ Str::limit($fashion->description, 160) }}
                                     </p>
                                     <p>
-                                        <a href="{{ route('blog.details') }}" class="btn btn-sm btn-outline-primary">
+                                        <a href="{{ route('blog.details',['id'=>$fashion->id]) }}" class="btn btn-sm btn-outline-primary">
                                             ReadMore
                                         </a>
                                     </p>
@@ -198,12 +177,12 @@
                                 <span class="date">{{ $formattedDate }}</span>
 
                                 <h3>
-                                    <a href="{{ route('blog.details') }}">{{ $fashion->blog_title }}</a>
+                                    <a href="{{ route('blog.details',['id'=>$fashion->id]) }}">{{ $fashion->blog_title }}</a>
                                 </h3>
                                 <p>
                                     {{ Str::limit($fashion->description, 110) }}
                                 </p>
-                                <p><a href="#" class="read-more">Continue Reading</a></p>
+                                <p><a href="{{ route('blog.details',['id'=>$fashion->id]) }}" class="read-more">Continue Reading</a></p>
                             </li>
                         @endforeach
 
@@ -229,7 +208,7 @@
                 @foreach ($latests as $latest)
                     <div class="col-md-6 col-lg-3">
                         <div class="blog-entry">
-                            <a href="{{ route('blog.details') }}" class="img-link">
+                            <a href="{{ route('blog.details',['id'=>$latest->id]) }}" class="img-link">
                                 <img src="{{ asset($latest->image) }}" alt="Image" class="w-100" style="height:200px">
                             </a>
                             @php
@@ -238,10 +217,10 @@
 
                             <span class="date">{{ $formattedDate }}</span>
                             <h2>
-                                <a href="{{ route('blog.details') }}">{{ Str::limit($latest->blog_title, 40) }}</a>
+                                <a href="{{ route('blog.details',['id'=>$latest->id]) }}">{{ Str::limit($latest->blog_title, 40) }}</a>
                             </h2>
                             <p> {{ Str::limit($latest->description, 110) }}</p>
-                            <p><a href="#" class="read-more">Continue Reading</a></p>
+                            <p><a href="{{ route('blog.details',['id'=>$latest->id]) }}" class="read-more">Continue Reading</a></p>
                         </div>
                     </div>
                 @endforeach
@@ -474,7 +453,7 @@
                 @foreach ($features as $feature)
                     <div class="col-md-6 col-lg-3">
                         <div class="blog-entry">
-                            <a href="{{ route('blog.details') }}" class="img-link">
+                            <a href="{{ route('blog.details',['id'=>$feature->id]) }}" class="img-link">
                                 <img src="{{ asset($feature->image) }}" alt="Image" class="w-100" style="height:200px">
                             </a>
                             @php
@@ -483,10 +462,10 @@
 
                             <p class="date">{{ $formattedDate }}</p>
                             <h2>
-                                <a href="{{ route('blog.details') }}">{{ Str::limit($feature->blog_title, 40) }}</a>
+                                <a href="{{ route('blog.details',['id'=>$feature->id]) }}">{{ Str::limit($feature->blog_title, 40) }}</a>
                             </h2>
                             <p> {{ Str::limit($latest->description, 110) }}</p>
-                            <p><a href="#" class="read-more">Continue Reading</a></p>
+                            <p><a href="{{ route('blog.details',['id'=>$feature->id]) }}" class="read-more">Continue Reading</a></p>
                         </div>
                     </div>
                 @endforeach
@@ -519,7 +498,7 @@
                         @foreach ($cutTwo as $technology)
                             <div class="col-md-6">
                                 <div class="blog-entry">
-                                    <a href="{{ route('blog.details') }}" class="img-link">
+                                    <a href="{{ route('blog.details',['id'=>$technology->id]) }}" class="img-link">
                                         <img src="{{ asset($technology->image) }}" alt="Image" class="img-fluid">
                                     </a>
                                     @php
@@ -529,10 +508,10 @@
                                     <p class="date">{{ $formattedDate }}</p>
                                     <h2>
                                         <a
-                                            href="{{ route('blog.details') }}">{{ Str::limit($technology->blog_title, 40) }}</a>
+                                            href="{{ route('blog.details',['id'=>$technology->id]) }}">{{ Str::limit($technology->blog_title, 40) }}</a>
                                     </h2>
                                     <p>{{ Str::limit($technology->description, 130) }}</p>
-                                    <p><a href="{{ route('blog.details') }}" class="btn btn-sm btn-outline-primary">Read
+                                    <p><a href="{{ route('blog.details',['id'=>$technology->id]) }}" class="btn btn-sm btn-outline-primary">Read
                                             More</a></p>
                                 </div>
                             </div>
@@ -558,10 +537,10 @@
                                 <p class="date">{{ $formattedDate }}</p>
                                 <h3>
                                     <a
-                                        href="{{ route('blog.details') }}">{{ Str::limit($technology->blog_title, 20) }}</a>
+                                        href="{{ route('blog.details',['id'=>$technology->id]) }}">{{ Str::limit($technology->blog_title, 20) }}</a>
                                 </h3>
                                 <p>{{ Str::limit($technology->description, 80) }}</p>
-                                <p><a href="#" class="read-more">Continue Reading</a></p>
+                                <p><a href="{{ route('blog.details',['id'=>$technology->id]) }}" class="read-more">Continue Reading</a></p>
                             </li>
                         @endforeach
 
@@ -588,12 +567,12 @@
                 @foreach ($sports as $sport)
                     <div class="col-lg-4 mb-4">
                         <div class="post-entry-alt">
-                            <a href="{{ route('blog.details') }}" class="img-link"><img
+                            <a href="{{ route('blog.details',['id'=>$sport->id]) }}" class="img-link"><img
                                     src="{{ asset($sport->image) }}" alt="Image" class="img-fluid"></a>
                             <div class="excerpt">
 
 
-                                <h2><a href="{{ route('blog.details') }}">{{ Str::limit($sport->blog_title, 37) }}</a>
+                                <h2><a href="{{ route('blog.details',['id'=>$sport->id]) }}">{{ Str::limit($sport->blog_title, 37) }}</a>
                                 </h2>
                                 <div class="post-meta align-items-center text-left clearfix">
                                     <figure class="author-figure mb-0 me-3 float-start"><img
@@ -611,7 +590,7 @@
                                 </div>
 
                                 <p>{{ Str::limit($sport->description, 120) }}</p>
-                                <p><a href="#" class="read-more">Continue Reading</a></p>
+                                <p><a href="{{ route('blog.details',['id'=>$sport->id]) }}" class="read-more">Continue Reading</a></p>
                             </div>
                         </div>
                     </div>
@@ -646,7 +625,7 @@
 
                 @foreach ($musics as $music)
                     <div class="col-md-5 order-md-2">
-                        <a href="{{ route('blog.details') }}" class="hentry img-1 h-100 gradient">
+                        <a href="{{ route('blog.details',['id'=>$music->id]) }}" class="hentry img-1 h-100 gradient">
                             <div class="featured-img" style="background-image: url('{{ asset($music->image) }}">
                             </div>
                             <div class="text">
@@ -668,7 +647,7 @@
                     @endphp
 
                     @foreach ($cutBlogsOne as $music)
-                        <a href="{{ route('blog.details') }}" class="hentry img-2 v-height mb30 gradient">
+                        <a href="{{ route('blog.details',['id'=>$music->id]) }}" class="hentry img-2 v-height mb30 gradient">
                             <div class="featured-img" style="background-image: url('{{ asset($music->image) }}');">
                             </div>
                             <div class="text text-sm">
@@ -699,7 +678,7 @@
                             }
                         @endphp
 
-                        <a href="{{ route('blog.details') }}" class="{{ $class }}">
+                        <a href="{{ route('blog.details',['id'=>$music->id]) }}" class="{{ $class }}">
                             <div class="featured-img"
                                 style="background-image: url('{{ asset($music->image) }}');"></div>
                             <div class="text text-sm">
