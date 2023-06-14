@@ -12,7 +12,7 @@
 
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset('/')}}css/bootstrap.css">
-    
+
     {{-- font awesome cdn start here --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       {{-- font awesome cdn end here --}}
@@ -88,17 +88,21 @@
         <div class="col-lg-4">
           <div class="widget">
             <h3 class="mb-4">About</h3>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p>TeachMag is a popular blog website that focuses on educational topics and resources.</p>
           </div> <!-- /.widget -->
           <div class="widget">
             <h3>Social</h3>
             <ul class="list-unstyled social">
-              <li><a href="#"><span class="icon-instagram"></span></a></li>
-              <li><a href="#"><span class="icon-twitter"></span></a></li>
-              <li><a href="#"><span class="icon-facebook"></span></a></li>
-              <li><a href="#"><span class="icon-linkedin"></span></a></li>
-              <li><a href="#"><span class="icon-pinterest"></span></a></li>
-              <li><a href="#"><span class="icon-dribbble"></span></a></li>
+
+
+
+
+              <li><a href="#"><span class="fab fa-instagram-square"></span></a></li>
+              <li><a href="#"><span class="fab fa-twitter-square"></span></a></li>
+              <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
+              <li><a href="#"><span class="fab fa-linkedin"></span></a></li>
+              <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+              <li><a href="#"><span class="fab fa-dribbble"></span></a></li>
             </ul>
           </div> <!-- /.widget -->
         </div> <!-- /.col-lg-4 -->
@@ -171,12 +175,7 @@
 
       <div class="row mt-5">
         <div class="col-12 text-center">
-          <!--
-              **==========
-              NOTE:
-              Please don't remove this copyright link unless you buy the license here https://untree.co/license/
-              **==========
-            -->
+
 
             <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a>  Distributed by <a href="https://themewagon.com">ThemeWagon</a> <!-- License information: https://untree.co/license/ -->
             </p>

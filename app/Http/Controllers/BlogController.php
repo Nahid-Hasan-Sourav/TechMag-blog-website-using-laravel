@@ -30,11 +30,25 @@ class BlogController extends Controller
     }
 
     public function blogDetails($id){
+
         $blogDetails = Blog::find($id);
 
+        $popularBlog=Blog::where('user_id', $blogDetails->user_id)
+        ->orderBy('updated_at', 'desc')
+        ->take(3)
+        ->get();
 
+        $moreBlogs = Blog::query()
+            ->orderBy('updated_at', 'desc')
+            ->take(4)
+            ->get();
+        return view('home.blogDetails.index',
+        [
+            'details'=>$blogDetails,
+            'popularBlog' => $popularBlog,
+            'moreBlogs' =>$moreBlogs
 
-        return view('home.blogDetails.index',['details'=>$blogDetails]);
+        ]);
     }
 
 
