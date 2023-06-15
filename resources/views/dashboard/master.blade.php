@@ -61,14 +61,19 @@
                     <div class="row mt-4">
                         <ul class="d-flex flex-column navbar-nav text-center px-3">
                             <li class="nav-item bg-danger text-white ">
-                                <a href="" class="nav-link">ALL USERS</a>
+                                <a href="{{ route('admin.all-user') }}" class="nav-link">ALL USERS</a>
 
                             </li>
 
                             <li class="nav-item bg-danger text-white mt-3">
-                                <a href="" class="nav-link">MANAGE USERS</a>
+                                <a href="{{ route('admin.all-blogger') }}" class="nav-link">ALL BLOGGER</a>
 
                             </li>
+
+                            {{-- <li class="nav-item bg-danger text-white mt-3">
+                                <a href="" class="nav-link">MANAGE USERS</a>
+
+                            </li> --}}
 
 
                         </ul>

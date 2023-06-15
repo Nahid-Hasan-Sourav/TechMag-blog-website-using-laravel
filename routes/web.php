@@ -6,6 +6,7 @@ use \App\Http\Controllers\DashboardController;
 use \App\Http\Controllers\UserAuthController;
 use \App\Http\Controllers\BlogController;
 use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::get('/blog/blogger-profile/{id}',[BlogController::class,'bloggerProfile']
 //this is for admin route
 Route::middleware(['checkUserRole:Admin'])->group(function () {
     Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin-dashboard/all-user', [AdminController::class, 'allUser'])->name('admin.all-user');
+    Route::get('/admin-dashboard/all-blogger', [AdminController::class, 'allBlogger'])->name('admin.all-blogger');
 });
 
 //this is for blogger route

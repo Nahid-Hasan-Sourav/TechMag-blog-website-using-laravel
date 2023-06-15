@@ -21,14 +21,18 @@
                                       @endif
 
                                 </div>
-                                <div class="media-body text-white" style="margin-bottom: 5rem !important;">
+                                <div class="media-body text-white ms-lg-4 ms-md-4 ms-sm-4 ms-4" style="margin-bottom: 5rem !important;">
                                     <h4 class="mt-0 mb-0">{{ $userDetails->name }}</h4>
                                     <p class="small mb-4"> <i class="fas fa-map-marker-alt d-inline-block" style="margin-right:6px !important"></i>New York</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-light p-4 d-flex justify-content-end text-center">
+                        <div class="bg-light p-4 d-flex justify-content-end text-center mt-lg-0 mt-md-0 mt-sm-5 mt-5">
                             <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <button type="submit" class="btn btn-primary follow-button mb-3">Follow</button>
+
+                                </li>
                                 <li class="list-inline-item">
                                     <h5 class="font-weight-bold mb-0 d-block">{{ $totalBlogs = $userAllBlog->count(); }}</h5><small class="text-muted"> <i
                                             class="fa-solid fa-blog mr-1"></i>Blogs</small>
