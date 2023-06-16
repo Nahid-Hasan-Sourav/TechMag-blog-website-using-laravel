@@ -23,7 +23,10 @@ class BlogController extends Controller
 
         $userId = session('user_id'); // Assuming 'user_id' is the session key storing the user_id
 
-        $blogs = Blog::where('user_id', $userId)->get();
+        //$blogs = Blog::where('user_id', $userId)->get();
+
+        $blogs = Blog::where('user_id', $userId)->paginate(5);
+
         // return $blogs;
         // die();
         return view('dashboard.blogger.blog.index',['blogs'=>$blogs],['categories'=>$categories]);
@@ -182,11 +185,25 @@ class BlogController extends Controller
 
     public function bloggerProfile($id){
         $userDetails =User::find($id);
-        $userAllBlog=Blog::where('user_id', $id)->get();
-        return view('home.bloggerprofile.index',
+        $userAllBlog=Blog::where('user_id', $id)->paginate(5);
+        return view('home.userProfile.index',
         [
             'userDetails' => $userDetails,
             'userAllBlog' => $userAllBlog
+
+        ]);
+    }
+
+    public function categoryWiseBlog($id){
+        $categoryDetails = Blog::where('category_id', $id)->paginate(5);
+        $popularPost = Blog::where('category_id', $id)
+        ->orderBy('created_at', 'desc')
+        ->take(3)
+        ->get();
+        return view('home.categoryWiseBlog.index', [
+
+            'categoryDetails' => $categoryDetails,
+            'popularPost' =>$popularPost
 
         ]);
     }

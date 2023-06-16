@@ -27,6 +27,7 @@ Route::get('/sign-up',[UserAuthController::class,'registration'])->name('signUp'
 Route::post('/create-user',[UserAuthController::class,'createUser'])->name('user.signUp');
 Route::get('/blog/blog-details/{id}',[BlogController::class,'blogDetails'])->name('blog.details');
 Route::get('/blog/blogger-profile/{id}',[BlogController::class,'bloggerProfile'])->name('blogger.profile');
+Route::get('/category-wise/blogg/{id}',[BlogController::class,'categoryWiseBlog'])->name('category-wise.blog');
 
 
 

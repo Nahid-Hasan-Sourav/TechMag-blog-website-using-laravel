@@ -58,7 +58,7 @@
 
 
                     <div class="pt-5">
-                        <p>Categories: <a href="#">{{ $details->category->category_name }}</a>
+                        <p>Categories: <a href="{{ route('category-wise.blog',['id'=>$details->category_id]) }}">{{ $details->category->category_name }}</a>
 
                         </p>
                     </div>
@@ -261,11 +261,11 @@
                     <div class="sidebar-box">
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
-                            <li><a href="#">Food <span>(12)</span></a></li>
-                            <li><a href="#">Travel <span>(22)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(37)</span></a></li>
-                            <li><a href="#">Business <span>(42)</span></a></li>
-                            <li><a href="#">Adventure <span>(14)</span></a></li>
+                            @foreach($categories as $category)
+                                  <li><a href="{{ route('category-wise.blog',['id'=>$category->id]) }}">{{ $category->category_name }} <span>({{ \App\Helper\DatabaseHelper::getBlogCountByCategoryId($category->id) }})</span></a></li>
+                            @endforeach
+
+
                         </ul>
                     </div>
                     <!-- END sidebar-box -->
@@ -330,5 +330,5 @@
     </section>
     <!-- End posts-entry -->
 
-   
+
 @endsection

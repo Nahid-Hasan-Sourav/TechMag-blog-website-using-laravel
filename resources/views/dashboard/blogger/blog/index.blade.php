@@ -58,6 +58,9 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    {{ $blogs->onEachSide(1)->links() }}
+
                 @else
                     <p class="fw-bold text-center h1">You have no blogs.</p>
                 @endif

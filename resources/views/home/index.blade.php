@@ -111,7 +111,8 @@
                     <div class="col-sm-6">
                         <h2 class="posts-entry-title">Fashion</h2>
                     </div>
-                    <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+                    <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>'8']) }}"
+                        class="read-more">View All</a></div>
                 </div>
 
             </div>
@@ -201,7 +202,8 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Latest</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+                <div class="col-sm-6 text-sm-end"><a href=""
+        class="read-more">View All</a></div>
             </div>
             <div class="row">
 
@@ -446,7 +448,8 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Feature</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+                <div class="col-sm-6 text-sm-end"><a href=""
+ class="read-more">View All</a></div>
             </div>
             <div class="row mt-2">
 
@@ -483,7 +486,8 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Technology</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>12]) }}"
+ class="read-more">View All</a></div>
             </div>
 
             <div class="row g-3">
@@ -559,7 +563,8 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Sports</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>13]) }}"
+ class="read-more">View All</a></div>
             </div>
 
             <div class="row">
@@ -613,7 +618,8 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Music</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>9]) }}"
+ class="read-more">View All</a></div>
             </div>
 
             <div class="row align-items-stretch retro-layout-alt">
