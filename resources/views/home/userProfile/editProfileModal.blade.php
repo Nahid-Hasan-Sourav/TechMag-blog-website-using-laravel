@@ -26,7 +26,7 @@
                         <div class="form-group row mb-4">
                             <label for="horizontal-email-input" class="col-sm-3 col-form-label">About</label>
                             <div class="col-sm-9">
-                                <textarea name="description" id="user-description" class="form-control blog-description" placeholder="" id="about" rows="10"></textarea>
+                                <textarea name="description" value=""  class="form-control blog-description" placeholder="" id="about" rows="10"></textarea>
                             </div>
                         </div>
 

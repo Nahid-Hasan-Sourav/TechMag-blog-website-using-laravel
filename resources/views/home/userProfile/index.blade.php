@@ -8,7 +8,8 @@
                     <!-- Profile widget -->
                     <div class="bg-white shadow rounded overflow-hidden">
                         {{-- https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80 --}}
-                        <div class="px-4 pt-0 pb-4 cover" style="background-image: url('{{ $userDetails->cover_image ? asset($userDetails->cover_image) : 'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80' }}');">
+                        <div class="px-4 pt-0 pb-4 cover"
+                            style="background-image: url('{{ $userDetails->cover_image ? asset($userDetails->cover_image) : 'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80' }}'); height:300px;">
                             <div class="media align-items-end profile-head">
                                 <div class="profile mr-3">
 
@@ -25,11 +26,11 @@
                                     @if (Session::get('user_role') == 'Blogger' ||
                                             Session::get('user_role') == 'User' ||
                                             Session::get('user_role') == 'Admin')
-                                             @if ($userDetails)
-                                <a href="#" class="btn btn-outline-dark btn-sm d-block" id="edit-profile"
-                                                                            data-id="{{ $userDetails->id }}">Edit profile</a>
-                                             @endif
+                                            @if(Session::get('user_id') === $userDetails->id)
 
+                                            <a href="#" class="btn btn-outline-dark btn-sm d-block" id="edit-profile"
+                                                data-id="{{ $userDetails->id }}">Edit profile</a>
+                                            @endif
                                     @endif
 
 
@@ -65,9 +66,24 @@
                         <div class="px-4 py-3">
                             <h5 class="mb-0">About</h5>
                             <div class="p-4 rounded shadow-sm bg-light">
-                                <p class="font-italic mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                                    neque recusandae optio? Eius voluptates quis amet! Nisi quae voluptas architecto
-                                    temporibus assumenda suscipit et nemo. Quibusdam tempora eveniet corporis libero?</p>
+                                {{-- <p class="font-italic mb-0">
+                                    {{ $userDetails->about ?? ($userDetails->about ? $userDetails->about : 'User Will Update Soon') }}
+                                </p> --}}
+
+
+
+                                @if($userDetails->about)
+                                <p class="font-italic mb-0">
+                                    {{ $userDetails->about }}
+                                </p>
+                                @else
+                                <p class="font-italic mb-0 font-bold">
+                                    User Will Update Soon
+
+                                </p>
+
+                                @endif
+
                                 {{-- <p class="font-italic mb-0">Lives in New York</p>
                                 <p class="font-italic mb-0">Photographer</p> --}}
                             </div>

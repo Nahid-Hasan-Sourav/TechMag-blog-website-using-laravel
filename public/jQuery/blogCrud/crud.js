@@ -327,7 +327,7 @@ jQuery(document).ready(function () {
             var image               =jQuery("#profile-image-input")[0].files[0];
             var cover_image         =jQuery("#cover-image-input")[0].files[0];
 
-            console.log("image ",cover_image)
+
 
             var formData = new FormData();
             formData.append("name",name);
@@ -340,7 +340,7 @@ jQuery(document).ready(function () {
             console.log("image field in formData: ", formData.get("image"));
             console.log("cover_image field in formData: ", formData.get("cover_image"));
 
-
+            console.log("about ",formData)
             $.ajaxSetup({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

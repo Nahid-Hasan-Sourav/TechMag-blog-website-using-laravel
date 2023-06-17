@@ -56,6 +56,7 @@ class User extends Model
         self::$user = New User();
         self::$user->name = $request->name;
         self::$user->email =$request->email;
+        self::$user->about = $request->about ?? '';
         self::$user->password = bcrypt($request->password);;
         self::$user->image = self::getImageUrl($request);
         self::$user->user_role = $request->user_role;

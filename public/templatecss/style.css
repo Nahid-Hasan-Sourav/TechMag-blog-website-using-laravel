@@ -59,13 +59,15 @@
   box-sizing: border-box; }
   /* profile */
   .profile-head {
-    transform: translateY(6rem);
+    transform: translateY(12rem);
 }
 
 .cover {
- 
+    background-position: center;
     background-size: cover;
+    object-fit: cover;
     background-repeat: no-repeat
+
 }
 /* .body {
     background: #654ea3;

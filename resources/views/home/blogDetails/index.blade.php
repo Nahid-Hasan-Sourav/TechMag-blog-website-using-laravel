@@ -210,11 +210,20 @@
                             <img src="{{ asset($details->user->image) }}" alt="Image Placeholder"
                                 class="img-fluid mb-3">
                             <div class="bio-body">
+
                                 <h2>{{ $details->user->name }}</h2>
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem
-                                    facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga
-                                    sit molestias minus.</p>
-                                <p><a href="{{ route('blogger.profile', ['id' => $details->user_id]) }}"
+                                @if($details->user->about)
+                                <p class="font-italic mb-0">
+                                    {{ $details->user->about }}
+                                </p>
+                                @else
+                                <p class="font-italic mb-0 font-bold">
+                                    User Will Update Soon
+                                </p>
+                                
+                                @endif
+
+                                    <a href="{{ route('blogger.profile', ['id' => $details->user_id]) }}"
                                         class="btn btn-primary btn-sm rounded px-2 py-2">VIEW PROFILE</a></p>
                                 <p class="social">
 
