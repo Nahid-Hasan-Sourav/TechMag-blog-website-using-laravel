@@ -7,6 +7,7 @@ use \App\Http\Controllers\UserAuthController;
 use \App\Http\Controllers\BlogController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\AdminController;
+use \App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ Route::get('/blog/blog-details/{id}',[BlogController::class,'blogDetails'])->nam
 Route::get('/blog/blogger-profile/{id}',[BlogController::class,'bloggerProfile'])->name('blogger.profile');
 Route::get('/category-wise/blogg/{id}',[BlogController::class,'categoryWiseBlog'])->name('category-wise.blog');
 
-
+Route::get('/edit/profile/{id}',[ProfileController::class,'EditProfile'])->name('edit.profile');
+Route::post('/update/profile/{id}',[ProfileController::class,'updateProfile'])->name('update.profile');
 
 //this is for admin route
 Route::middleware(['checkUserRole:Admin'])->group(function () {

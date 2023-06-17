@@ -111,7 +111,7 @@
                     <div class="col-sm-6">
                         <h2 class="posts-entry-title">Fashion</h2>
                     </div>
-                    <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>'8']) }}"
+                    <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>'1']) }}"
                         class="read-more">View All</a></div>
                 </div>
 
@@ -126,6 +126,7 @@
                     <div class="row g-3">
                         @php
                             $cutBlogsFashion = $fashions->slice(0, 2);
+
                         @endphp
 
                         @foreach ($cutBlogsFashion as $fashion)
@@ -486,7 +487,7 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Technology</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>12]) }}"
+                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>6]) }}"
  class="read-more">View All</a></div>
             </div>
 
@@ -563,7 +564,7 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Sports</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>13]) }}"
+                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>7]) }}"
  class="read-more">View All</a></div>
             </div>
 
@@ -618,7 +619,7 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title">Music</h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>9]) }}"
+                <div class="col-sm-6 text-sm-end"><a href="{{ route('category-wise.blog',['id'=>5]) }}"
  class="read-more">View All</a></div>
             </div>
 

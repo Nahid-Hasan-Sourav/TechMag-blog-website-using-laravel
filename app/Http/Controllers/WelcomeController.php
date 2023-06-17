@@ -16,7 +16,7 @@ class WelcomeController extends Controller
             ->take(5)
             ->get();
 
-        $fashions = Blog::where('category_id', 8)
+        $fashions = Blog::where('category_id', 1)
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -28,15 +28,15 @@ class WelcomeController extends Controller
             ->take(4)
             ->get();
 
-        $texhnologies = Blog::where('category_id', 12)
+        $texhnologies = Blog::where('category_id', 6)
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
-        $sports = Blog::where('category_id', 13)
+        $sports = Blog::where('category_id', 7)
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
-        $musics = Blog::where('category_id', 9)
+        $musics = Blog::where('category_id', 5)
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

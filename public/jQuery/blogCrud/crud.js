@@ -109,7 +109,7 @@ jQuery(document).ready(function () {
 
 
 
-     // ADD BLOG START END HERE
+     // ADD BLOG  END HERE
 
     //UPDATE START HERE
     jQuery(".edit-blog-btn").click(function(){
@@ -260,6 +260,123 @@ jQuery(document).ready(function () {
             }
           });
         });
+
+
+
+        // update_user_profile_information
+
+        jQuery("#edit-profile").click(function(){
+            var id = jQuery(this).data('id');
+            jQuery("#user-profile-update-btn").val(id);
+            jQuery("#userEditModal").modal("show");
+
+            $.ajax({
+
+            url:"/edit/profile/"+id,
+            type:"GET",
+            success:function(res){
+
+                if(res.status=="200"){
+                    console.log("Click Edit Button ",res.data.name);
+                jQuery("#user-name").val(res.data.name);
+                jQuery("#user-location").val(res.data.user_location);
+                jQuery("#about").val(res.data.about);
+
+                var assetPath = jQuery(".asset-path-profile").data("asset");
+                var imageUrl = assetPath + res.data.image;
+                jQuery("#profile-preview-image").attr("src", imageUrl);
+
+                var assetPath = jQuery(".asset-path-cover").data("asset");
+                var imageUrl = assetPath + res.data.cover_image;
+                jQuery("#cover-preview-image").attr("src", imageUrl);
+                }
+
+            }
+
+            })
+
+            // this code id for when i will select image it will be
+            // preview
+
+            $('#profile-image-input').on('change', function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#profile-preview-image').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            });
+
+            $('#cover-image-input').on('change', function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#cover-preview-image').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            });
+
+
+        })
+
+
+        jQuery("#user-profile-update-btn").click(function(){
+            var id = jQuery(this).val();
+
+            var name                =jQuery("#user-name").val();
+            var user_location      =jQuery("#user-location").val();
+            var about               =jQuery("#about").val();
+            var image               =jQuery("#profile-image-input")[0].files[0];
+            var cover_image         =jQuery("#cover-image-input")[0].files[0];
+
+            console.log("image ",cover_image)
+
+            var formData = new FormData();
+            formData.append("name",name);
+            formData.append("user_location",user_location);
+            formData.append("about",about);
+            formData.append('image',image);
+            formData.append("cover_image",cover_image);
+
+            console.log("After Submit from ",formData);
+            console.log("image field in formData: ", formData.get("image"));
+            console.log("cover_image field in formData: ", formData.get("cover_image"));
+
+
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+            });
+
+            $.ajax({
+                url:"/update/profile/"+id,
+                type:"POST",
+                data: formData,
+                contentType: false, // Set contentType to false for file uploads
+                processData: false, // Set processData to false for file uploads
+
+                success:function (response){
+                    if(response.status == "200"){
+
+                        jQuery("#userEditModal").modal("hide");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Features Status Updated',
+                            text: 'The Features Status has been successfully updated.',
+                            timer: 5000, // Set the timer to 3000 milliseconds (3 seconds)
+                            showConfirmButton: true // Hide the "OK" button
+                          }).then(() => {
+                            // After the timer expires, reload the page
+                            window.location.reload();
+                          });
+
+                    }
+                }
+            })
+
+
+
+        })
+
 
 
 })

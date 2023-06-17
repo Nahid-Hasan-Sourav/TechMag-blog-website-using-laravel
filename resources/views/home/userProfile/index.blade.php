@@ -7,10 +7,17 @@
                 <div class="col-md-12 mx-auto">
                     <!-- Profile widget -->
                     <div class="bg-white shadow rounded overflow-hidden">
-                        <div class="px-4 pt-0 pb-4 cover">
+                        {{-- https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80 --}}
+                        <div class="px-4 pt-0 pb-4 cover" style="background-image: url('{{ $userDetails->cover_image ? asset($userDetails->cover_image) : 'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80' }}');">
                             <div class="media align-items-end profile-head">
-                                <div class="profile mr-3"><img src="{{ asset($userDetails->image) }}" alt="..."
-                                        width="130" class="rounded mb-1 img-thumbnail">
+                                <div class="profile mr-3">
+
+
+                                    @if ($userDetails)
+                                        <img src="{{ asset($userDetails->image) }}" alt="..." width="130"
+                                            class="rounded mb-1 img-thumbnail">
+                                    @endif
+
                                     {{-- <a href="#" class="btn btn-outline-dark btn-sm d-block">Edit profile</a> --}}
 
                                     {{-- {{ dd(Session::get('user_role')) }} --}}
@@ -18,7 +25,11 @@
                                     @if (Session::get('user_role') == 'Blogger' ||
                                             Session::get('user_role') == 'User' ||
                                             Session::get('user_role') == 'Admin')
-                                        <a href="#" class="btn btn-outline-dark btn-sm d-block">Edit profile</a>
+                                             @if ($userDetails)
+                                <a href="#" class="btn btn-outline-dark btn-sm d-block" id="edit-profile"
+                                                                            data-id="{{ $userDetails->id }}">Edit profile</a>
+                                             @endif
+
                                     @endif
 
 
@@ -112,6 +123,8 @@
                     </div>
                 </div>
             </div>
+
+            @include('home.userProfile.editProfileModal')
         </div>
     </div>
 @endsection

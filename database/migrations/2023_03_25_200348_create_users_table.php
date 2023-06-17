@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('image');
+            $table->string('cover_image')->nullable();
             $table->string('user_role');
+            $table->string('user_location')->nullable();
+            $table->text('about')->nullable();
             $table->timestamps();
         });
     }
